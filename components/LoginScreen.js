@@ -3,7 +3,7 @@ import {NativeModules, Text, View, StyleSheet, TextInput, TouchableOpacity} from
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import KommunicateChat from 'react-native-kommunicate-chat'
+var KommunicateChat = NativeModules.RNKommunicateChat;
 
 export class LoginScreen extends Component {
     static navigationOptions = {
@@ -78,8 +78,8 @@ export class LoginScreen extends Component {
       KommunicateChat.buildConversation(
         {
           appId: this.appid,
-          kmUser: kmUser,
-          isSingleConversation: true
+          kmUser: JSON.stringify(kmUser),
+          clientConversationId: "reytum0001"
         }, (status, message) => {
           console.log("Received while creating conversation, status : " + status + " and message : " + message);
       });

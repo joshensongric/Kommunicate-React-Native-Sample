@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {NativeModules, Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {Platform, NativeModules, Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import KommunicateChat from 'react-native-kommunicate-chat';
+var KommunicateChat = NativeModules.RNKommunicateChat;
 
 export class HomeScreen extends Component {
 
@@ -63,6 +63,21 @@ export class HomeScreen extends Component {
       }); 
     }
 
+    updateUserDetails = () => {
+      let date = new Date();
+      KommunicateChat.updateUserDetails({
+        email: "reytum007+" + date.getTime()%100000 + "@gmail.com",
+        displayName: ("RN-" + (Platform.OS === 'android' ? "Android-" : "iOS-") + date.getTime()%100000),
+        metadata: {
+          'Email-ID': "reytum007+" + date.getTime()%100000 + "@gmail.com",
+          'Phone number': date.getTime()%100000,
+          'Platform': ("RN-" + (Platform.OS === 'android' ? "Android" : "iOS"))
+        } 
+      }, (status, message) => {
+        console.log("Update user details, status : " + status + " and message : " + message);
+      });
+    }
+
     render() {
         return(
             <View style= {styles.maincontainer}>
@@ -71,6 +86,7 @@ export class HomeScreen extends Component {
                 <View style={styles.buttoncontainer}>
                 <LinearGradient start={{x:0,y: 0}} end={{x:1,y: 1}} colors={['#43e97b', '#38f9d7']} style={styles.button}><TouchableOpacity style={{padding: 10, alignItems: 'center'}} onPress={this.createConversation}><Text style={{color: 'white'}}>CREATE CONVERSATION</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient start={{x:0,y: 0}} end={{x:1,y: 1}} colors={['#43e97b', '#38f9d7']} style={styles.button}><TouchableOpacity style={{padding: 10, alignItems: 'center'}} onPress={this.openConversation}><Text style={{color: 'white'}}>OPEN CONVERSATION</Text></TouchableOpacity></LinearGradient>
+                <LinearGradient start={{x:0,y: 0}} end={{x:1,y: 1}} colors={['#43e97b', '#38f9d7']} style={styles.button}><TouchableOpacity style={{padding: 10, alignItems: 'center'}} onPress={this.updateUserDetails}><Text style={{color: 'white'}}>UPDATE USER DETAILS</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient start={{x:0,y: 0}} end={{x:1,y: 1}} colors={['#f6d365', '#fda085']} style={styles.button}><TouchableOpacity style={{padding: 10, alignItems: 'center'}} onPress={this.logout}><Text style={{color: 'white'}}>LOGOUT</Text></TouchableOpacity></LinearGradient>
                 </View>
             </View>

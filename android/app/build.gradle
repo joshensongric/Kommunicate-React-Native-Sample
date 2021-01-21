@@ -129,6 +129,7 @@ android {
 
     defaultConfig {
         applicationId "com.kmsample"
+        multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -183,6 +184,7 @@ dependencies {
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-kommunicate-chat')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     if (enableHermes) {

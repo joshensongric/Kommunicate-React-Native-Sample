@@ -10,7 +10,7 @@ import Foundation
 import Kommunicate
 import UserNotifications
 
-@objc public class KommunicateWrapper: NSObject {
+@objc public class KommunicateWrapper: NSObject { 
     
     @objc public static let shared = KommunicateWrapper()
     
@@ -38,7 +38,7 @@ import UserNotifications
     @objc func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         registerForNotification()
         useCustomConfigurations()
-        KMPushNotificationHandler.shared.dataConnectionNotificationHandlerWith(Kommunicate.defaultConfiguration)
+      KMPushNotificationHandler.shared.dataConnectionNotificationHandlerWith(Kommunicate.defaultConfiguration, Kommunicate.kmConversationViewConfiguration)
         let kmApplocalNotificationHandler : KMAppLocalNotification =  KMAppLocalNotification.appLocalNotificationHandler()
         kmApplocalNotificationHandler.dataConnectionNotificationHandler()
         return true
@@ -116,6 +116,5 @@ import UserNotifications
         Kommunicate.defaultConfiguration.hideFaqButtonInConversationList = true // Hide from Conversation List screen
         Kommunicate.defaultConfiguration.hideFaqButtonInConversationView = true // Hide from Conversation screen
         Kommunicate.defaultConfiguration.hideEmptyStateStartNewButtonInConversationList = true
-        Kommunicate.defaultConfiguration.hideStartConversationButton = true
     }
 }

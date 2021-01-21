@@ -10,8 +10,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "KmSample-Bridging-Header.h"
-#import "KmSample-Swift.h"
+//#import "KmSample-Bridging-Header.h"
 
 @implementation AppDelegate
 
@@ -30,7 +29,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
-  [KommunicateWrapper.shared application:application didFinishLaunchingWithOptions:launchOptions];
+  //[KommunicateWrapper.shared application:application didFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
 
