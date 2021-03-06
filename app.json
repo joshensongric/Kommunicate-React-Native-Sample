@@ -1,4 +1,12 @@
 {
   "name": "KmSample",
-  "displayName": "KmSample"
+  "displayName": "KmSample",
+  "expo": {
+    "android": {
+      "package": "com.kmsample"
+    },
+    "ios": {
+      "bundleIdentifier": "org.reactjs.native.example.KmSample"
+    }
+  }
 }
